@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    {% comment %} <meta name="viewport" content="width=device-width, initial-scale=1.0"> {% endcomment %}
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <title>Counter</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+</head>
+<body>
+    
+
+    {% if user.is_authenticated %}
+        <div class="wrapper">
+            <table>
+                <tr>
+                    <td><h2><a href="{% url 'home' %}">Welcome {{ user }}</a></h2></td>
+                    <td><button class="darkmode-button" type="button" onclick="darkMode()">Dark</button></td>
+                </tr>
+            </table>
+
+            <p>Choose what you want to use</p>
+
+            <ul><form><button class="custom-menu-button" formaction="{% url 'padelcounter' %}" type="submit">Padel Match Counter</button></form></ul>
+            <ul><form><button class="custom-menu-button" formaction="{% url 'rolldice' %}" type="submit">Roll Dicer</button></form></ul>
+        
+        </div>
+
+    {% else %}
+        <h2>Login first</h2>
+    {% endif %}
+
+    <script src="{% static 'js/darkmode.js' %}"></script>
+
+</body>
+</html>
